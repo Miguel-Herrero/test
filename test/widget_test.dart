@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:ci/main.dart';
+import 'package:ci/main.dart' as hello_world;
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
@@ -26,5 +27,12 @@ void main() {
     // Verify that our counter has incremented.
     expect(find.text('0'), findsNothing);
     expect(find.text('1'), findsOneWidget);
+  });
+
+  testWidgets('Hello world smoke test', (WidgetTester tester) async {
+    hello_world.main(); // builds the app and schedules a frame but doesn't trigger one
+    await tester.pump(); // triggers a frame
+
+    expect(find.text('0'), findsOneWidget);
   });
 }
